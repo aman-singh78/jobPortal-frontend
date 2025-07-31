@@ -28,12 +28,17 @@ const NavBar = () => {
           </ul>
           {!user ? (
             <div className="">
-              <Button variant="outline" className="mx-4">
-                Login
-              </Button>
-              <Button className="bg-[#6A38C2] hover:bg-[#5b30a6]">
-                SignUp
-              </Button>
+              <Link to={"/login"}>
+                <Button variant="outline" className="mx-4">
+                  Login
+                </Button>
+              </Link>
+
+              <Link to={"/signup"}>
+                <Button className="bg-[#6A38C2] hover:bg-[#5b30a6]">
+                  SignUp
+                </Button>
+              </Link>
             </div>
           ) : (
             <Popover>
