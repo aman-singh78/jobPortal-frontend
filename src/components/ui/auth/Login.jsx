@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import NavBar from "../shared/NavBar";
 import { Label } from "@radix-ui/react-label";
 import { Input } from "../input";
@@ -7,20 +7,49 @@ import { Button } from "../button";
 import { Link } from "react-router-dom";
 
 const Login = () => {
+  const [input, setInput] = useState({
+    email: "",
+    password: "",
+    role: "",
+  });
+
+  const changeEventHandler = (e) => {
+    setInput({ ...input, [e.target.name]: e.target.value });
+  };
+
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    console.log(input);
+  };
   return (
     <div>
       <NavBar />
       <div className="flex items-center justify-center max-w-7xl mx-auto">
-        <form className="w-1/2 border border-gray-200 rounded-md p-4 my-10">
+        <form
+          onSubmit={submitHandler}
+          className="w-1/2 border border-gray-200 rounded-md p-4 my-10"
+        >
           <h1 className="font-bold text-xl mb-5">Login</h1>
 
           <div className="my-2">
             <Label>Email</Label>
-            <Input type="email" placeholder="aman@gmail.com" />
+            <Input
+              type="email"
+              value={input.email}
+              name="email"
+              onChange={changeEventHandler}
+              placeholder="aman@gmail.com"
+            />
           </div>
           <div className="my-2">
             <Label>Password</Label>
-            <Input type="password" placeholder="xvj12@%" />
+            <Input
+              type="password"
+              value={input.password}
+              name="password"
+              onChange={changeEventHandler}
+              placeholder="xvj12@%"
+            />
           </div>
 
           <div className="flex items-center justify-between">
@@ -30,6 +59,8 @@ const Login = () => {
                   type="radio"
                   name="role"
                   value="student"
+                  checked={input.role === "student"}
+                  onChange={changeEventHandler}
                   className="cursor-pointer"
                 />
                 <Label htmlFor="option-one">Student</Label>
@@ -39,6 +70,8 @@ const Login = () => {
                   type="radio"
                   name="role"
                   value="recruiter"
+                  checked={input.role === "recruiter"}
+                  onChange={changeEventHandler}
                   className="cursor-pointer"
                 />
                 <Label htmlFor="option-two">Recruiter</Label>
