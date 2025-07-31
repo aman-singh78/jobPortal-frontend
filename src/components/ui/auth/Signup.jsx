@@ -4,9 +4,10 @@ import { Label } from "@radix-ui/react-label";
 import { Input } from "../input";
 import { RadioGroup, RadioGroupItem } from "../radio-group";
 import { Button } from "../button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { USER_API_END_POINT } from "@/utils/constant";
 import axios from "axios";
+import { toast } from "sonner";
 
 const Signup = () => {
   const [input, setInput] = useState({
@@ -17,6 +18,7 @@ const Signup = () => {
     role: "",
     file: "",
   });
+  const navigate = useNavigate();
 
   const changeEventHandler = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
@@ -42,6 +44,10 @@ const Signup = () => {
       const res = await axios.post(`${USER_API_END_POINT}/register`, formData, {
         withCredentials: true,
       });
+      if (res.data.success) {
+        navigate("/login");
+        toast.success(res.data.message);
+      }
     } catch (err) {
       console.log(err);
     }
