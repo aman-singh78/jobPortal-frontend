@@ -3,6 +3,8 @@ import NavBar from "../shared/NavBar";
 import { Label } from "@radix-ui/react-label";
 import { Input } from "../input";
 import { RadioGroup, RadioGroupItem } from "../radio-group";
+import { Button } from "../button";
+import { Link } from "react-router-dom";
 
 const Signup = () => {
   return (
@@ -28,17 +30,40 @@ const Signup = () => {
             <Input type="number" placeholder="+91" />
           </div>
           <div className="flex items-center justify-between">
-            <RadioGroup defaultValue="option-one">
+            <RadioGroup className="flex items-center gap-4 my-5">
               <div className="flex items-center space-x-2">
-                <RadioGroupItem value="option-one" id="option-one" />
+                <Input
+                  type="radio"
+                  name="role"
+                  value="student"
+                  className="cursor-pointer"
+                />
                 <Label htmlFor="option-one">Student</Label>
               </div>
               <div className="flex items-center space-x-2">
-                <RadioGroupItem value="option-two" id="option-two" />
+                <Input
+                  type="radio"
+                  name="role"
+                  value="recruiter"
+                  className="cursor-pointer"
+                />
                 <Label htmlFor="option-two">Recruiter</Label>
               </div>
             </RadioGroup>
+            <div className="flex items-center gap-2">
+              <label>Profile</label>
+              <Input accept="image/*" type="file" className="cursor-pointer" />
+            </div>
           </div>
+          <Button type="submit" className="w-full my-4">
+            Signup
+          </Button>
+          <span className="text-small">
+            Already have an account?
+            <Link to="/login" className="text-blue-600">
+              Login
+            </Link>
+          </span>
         </form>
       </div>
     </div>
