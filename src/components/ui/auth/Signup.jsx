@@ -38,18 +38,21 @@ const Signup = () => {
     if (input.file) {
       formData.append("file", input.file);
     }
-
     e.preventDefault();
     try {
       const res = await axios.post(`${USER_API_END_POINT}/register`, formData, {
         withCredentials: true,
       });
+      console.log("User added");
+      console.log(res.data.success);
       if (res.data.success) {
-        navigate("/login");
         toast.success(res.data.message);
+
+        navigate("/login");
       }
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      console.log(error);
+      toast.error(error.response.data.message);
     }
   };
 
