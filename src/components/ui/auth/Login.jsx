@@ -92,10 +92,6 @@ const Login = () => {
                 <Label htmlFor="option-two">Recruiter</Label>
               </div>
             </RadioGroup>
-            <div className="flex items-center gap-2">
-              <label>Profile</label>
-              <Input accept="image/*" type="file" className="cursor-pointer" />
-            </div>
           </div>
           <Button type="submit" className="w-full my-4">
             SignIn

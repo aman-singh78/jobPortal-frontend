@@ -44,7 +44,6 @@ const Signup = () => {
         withCredentials: true,
       });
       console.log("User added");
-      console.log(res.data.success);
       if (res.data.success) {
         toast.success(res.data.message);
 
